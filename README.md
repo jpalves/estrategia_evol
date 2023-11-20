@@ -1,0 +1,4 @@
+# Estratégia evolucionária para minimização
+
+
+
