@@ -1,10 +1,10 @@
 import numpy as np
-import fpga3
+import fpga
 import atest
 import matplotlib.pyplot as plt
 
 
-xx = fpga3.algoritmo(10)
+xx = fpga.fpga3(10)
 x  = np.linspace(0, 6.28, 100)
 
 y=[]

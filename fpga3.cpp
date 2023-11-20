@@ -2,7 +2,9 @@
 #include "array.h"
 #include <sstream>
 #include <string>
-#include <Python.h>
+#include <python3.10/Python.h>
+#include <boost/python/module.hpp>
+#include <boost/python/def.hpp>
 
 using namespace std;
 PyObject *pName, *pModule, *pArgs, *pValue, *pFunc;
@@ -342,12 +344,11 @@ int ffitness(Array<float> &var){
         return 0;	
 }
 
-double algoritmo(int geracoes){
+double fpga3(int geracoes=150){
 	Populacao pop(TAMANHO_POP,N_VARS); //falta implementar os limites das variáveis ainda não sei como
 	Cromossoma aux;
-	int i;
         Py_Initialize();
-       
+        int i;
         
 	for(int j=0;j<GERACOES;j++){
 		aux=pop.menorFitness();
@@ -365,16 +366,22 @@ double algoritmo(int geracoes){
 	cout<<"--------------------------------------------------------"<<endl;
 	cout<<aux<<endl;
 	//*a = aux[0];
-	return aux[0];
+	//
 
 
        /*Py_DECREF(pValue);
     	Py_XDECREF(pFunc);
     	Py_DECREF(pModule);
+*/
+    	//Py_Finalize(); 
+    	return aux[0];  	
+}
 
-    	Py_Finalize();*/
-    	
-    	
+using namespace boost::python;
+
+BOOST_PYTHON_MODULE(fpga)
+{
+    def("fpga3", fpga3);
 }
 
 
